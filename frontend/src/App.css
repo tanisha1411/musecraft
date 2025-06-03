@@ -1,0 +1,174 @@
+/* Import a modern, techy font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --accent: #00ffe7;
+  --accent2: #1e90ff;
+  --bg-main: #181c24;
+  --bg-glass: rgba(24,28,36,0.85);
+  --border-glass: rgba(0,255,231,0.18);
+  --text-main: #eaf6fb;
+  --text-dim: #7dd7c9;
+  --shadow: 0 4px 32px 0 rgba(0,255,231,0.08);
+}
+
+/* body, .App {
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Consolas', monospace;
+  background: linear-gradient(120deg, #181c24 0%, #232b36 100%);
+  color: var(--text-main);
+  transition: background 0.5s;
+} */
+
+body[data-theme="dark"] {
+  background: linear-gradient(120deg, #181c24 0%, #232b36 100%);
+  color: var(--text-main);
+}
+
+body[data-theme="light"] {
+  background: linear-gradient(120deg, #668c9c 0%, #afcdda 100%);
+  color: #232b36;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 10px 32px 10px;
+  z-index: 1;
+}
+
+h1 {
+  font-family: 'JetBrains Mono', 'Orbitron', monospace;
+  font-size: 2.2rem;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  text-shadow: 0 2px 24px var(--accent2), 0 0 2px var(--accent);
+  margin-bottom: 32px;
+  font-weight: 700;
+}
+
+button {
+  background: linear-gradient(90deg, #232b36 0%, var(--accent2) 100%);
+  color: var(--accent);
+  border: 1.5px solid var(--accent2);
+  border-radius: 7px;
+  padding: 10px 28px;
+  margin: 8px 10px 0 0;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 2px 16px 0 rgba(0,255,231,0.08);
+  cursor: pointer;
+  transition: 
+    background 0.2s, 
+    box-shadow 0.2s, 
+    color 0.2s, 
+    border 0.2s,
+    transform 0.1s;
+  outline: none;
+}
+button:hover, button:focus {
+  background: linear-gradient(90deg, var(--accent2) 0%, #232b36 100%);
+  color: #fff;
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 0 24px var(--accent2), 0 0 8px var(--accent);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.output-terminal {
+  background: var(--bg-glass);
+  border: 1.5px solid var(--border-glass);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 28px 22px;
+  margin: 32px 0 24px 0;
+  width: 90vw;
+  max-width: 720px;
+  min-height: 180px;
+  font-size: 1.08rem;
+  color: var(--text-main);
+  font-family: 'JetBrains Mono', 'Fira Mono', monospace;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(3px);
+  transition: box-shadow 0.3s;
+  border-left: 4px solid var(--accent);
+}
+
+.output-terminal::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 60%, rgba(0,255,231,0.04) 100%);
+  z-index: 0;
+}
+
+textarea, select, input[type="text"] {
+  background: var(--bg-glass);
+  color: var(--text-main);
+  border: 1.5px solid var(--accent2);
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 10px 14px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+textarea:focus, select:focus, input[type="text"]:focus {
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 0 8px var(--accent2);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #232b36;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent2);
+  border-radius: 4px;
+}
+
+/* Subtle animated grid overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    120deg,
+    rgba(0,255,231,0.04) 0px,
+    rgba(0,255,231,0.04) 1.5px,
+    transparent 1.5px,
+    transparent 40px
+  );
+  z-index: 0;
+  animation: moveBg 12s linear infinite;
+}
+@keyframes moveBg {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 200px; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .output-terminal {
+    padding: 16px 6px;
+    font-size: 0.98rem;
+  }
+  .App {
+    padding: 18px 2vw;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+}
